@@ -7,6 +7,7 @@ const axios = require('axios')
 const nap_config = {
     basePath : 'https://www.net-a-porter.com/en-us/shop/product/',
     searchAPI : 'http://lb.search.wcs.prd01.nap.ewe1.aws.prod.e-comm:9080/search/resources/store/nap_gb/sitecontent/productSuggestionsBySearchTerm/',
+    searchAPI2: 'https://ecomm.ynap.biz/api/nap/search/resources/store/nap_gb/productview/bySearchTerm/',
     reccsAPI : 'http://lb.search.wcs.prd01.nap.ewe1.aws.prod.e-comm:9080/search/resources/store/nap_gb/productview/bySearchTerm/',
     store: 'Net-A-Porter',
 }
@@ -30,8 +31,8 @@ app.get('/search', async (req,res) => {
 })
 
 app.post('/search', async (req,res) => {
-    const items = convertInputToJSON(req.body.body.outfitRequest)
     console.log(req.body)
+    const items = convertInputToJSON(req.body.body.outfitRequest)
     // items = req.body.body.outfitRequest
     console.log(req.body.body.outfitRequest)
     console.log(req.body.body.gender)
@@ -144,12 +145,11 @@ app.listen(port, () => {
 })
 
 async function bySearchTerm(term, config){
-    console.log(`${config.reccsAPI}${term}`)
-        let result = await axios.get(`${config.reccsAPI}${term}`,
+    console.log(`${config.searchAPI2}${term}`)
+        let result = await axios.get(`${config.searchAPI2}${term}`,
         {
-            proxy: {
-                protocol: 'http',
-                host: 'internal-lb-core-svc-proxy-389545272.eu-west-1.elb.amazonaws.com'
+            headers: {
+                "x-ibm-client-id": "95f14cbd-793e-46ec-9f76-6fac2fbb6683"
             },
             timeout: 5000
         });
@@ -159,8 +159,6 @@ async function bySearchTerm(term, config){
         }
         return data.slice(0,3)
 }
-
-
 
 function simplifyTerm(term){
     let words = term.split(" ").filter(Boolean);
