@@ -1,0 +1,3 @@
+.placeholder-smaller::placeholder {
+    font-size: 0.3em;
+  }

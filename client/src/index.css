@@ -1,0 +1,26 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+   font-family: 'Montserrat', sans-serif;
+}
+h1 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 2rem;
+    font-weight: bold;
+  }
+  h2 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 2rem;
+
+ 
+  }
+  
+  * {
+    overflow: hidden;
+  }
+
+  .placeholder-smaller::placeholder {
+    font-size: 0.8em;
+  }
