@@ -10,13 +10,16 @@ const nap_config = {
     searchAPI2: 'https://ecomm.ynap.biz/api/nap/search/resources/store/nap_gb/productview/bySearchTerm/',
     reccsAPI : 'http://lb.search.wcs.prd01.nap.ewe1.aws.prod.e-comm:9080/search/resources/store/nap_gb/productview/bySearchTerm/',
     store: 'Net-A-Porter',
+    apiHeader: '95f14cbd-793e-46ec-9f76-6fac2fbb6683'
 }
 
 const mrp_config = {
     basePath : 'https://www.mrporter.com/en-gb/mens/product/',
     searchAPI : 'http://lb.search.wcs.prd01.inseason.ewe1.aws.prod.e-comm:9080/search/resources/store/mrp_gb/sitecontent/productSuggestionsBySearchTerm/',
+    searchAPI2: 'https://ecomm.ynap.biz/api/inseason/search/resources/store/mrp_gb/productview/bySearchTerm/',
     reccsAPI : 'http://lb.search.wcs.prd01.inseason.ewe1.aws.prod.e-comm:9080/search/resources/store/mrp_gb/productview/bySearchTerm/',
-    store: 'Mr-Porter'
+    store: 'Mr-Porter',
+    apiHeader: '0b1e2c22-581d-435b-9cde-70bc52cba701'
 }
 
 //Routing
@@ -149,7 +152,7 @@ async function bySearchTerm(term, config){
         let result = await axios.get(`${config.searchAPI2}${term}`,
         {
             headers: {
-                "x-ibm-client-id": "95f14cbd-793e-46ec-9f76-6fac2fbb6683"
+                "x-ibm-client-id": config.apiHeader
             },
             timeout: 5000
         });
