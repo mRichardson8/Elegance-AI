@@ -23,11 +23,11 @@ const Sidebar = ({ onSearchResults, onLoadingChange, isLoading }: SidebarProps) 
   };
 
   const { mutate, error, isError } = useMutation(createOutfit, {
-    onSuccess: (data) => {
+    onSuccess: (data: any) => {
       onLoadingChange(false);
-      onSearchResults(data);
+      onSearchResults(data, isLoading);
     },
-    onError: (err) => {
+    onError: (err: Error) => {
       onLoadingChange(false);
       console.error("Error occurred during outfit creation:", err);
     },
