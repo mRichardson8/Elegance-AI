@@ -3,7 +3,7 @@ const axios = require("axios");
 const napResponse = async(outfitRequest, gender) => {
     console.log("im here")
     try {
-      const response =  await axios.post('http://localhost:3000/search', {
+      const response =  await axios.post('https://ynap-server.onrender.com/search', {
             body: {
                 gender: gender,
                 outfitRequest: outfitRequest, 

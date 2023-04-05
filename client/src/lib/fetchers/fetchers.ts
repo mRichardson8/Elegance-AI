@@ -10,7 +10,7 @@ export async function postProducts(){
 
 
 export const createOutfit = async ({ searchTerm, gender }: any) => {
-    const response = await axios.post("http://localhost:1337/openai", {
+    const response = await axios.post("https://chatgpt-server-84g5.onrender.com/openai", {
       // const response = await axios.post("http://localhost:3000/api/createOutfit", {
       searchTerm,
       gender,
